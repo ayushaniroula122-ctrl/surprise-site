@@ -1,1 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>For You ❤️</title>
+
+<style>
+body{
+    font-family: Arial;
+    text-align:center;
+    background: linear-gradient(45deg,#ff9a9e,#fad0c4);
+    height:100vh;
+}
+
+h1{
+    margin-top:50px;
+}
+
+button{
+    padding:15px 25px;
+    font-size:18px;
+    border:none;
+    border-radius:10px;
+    background:#ff4b5c;
+    color:white;
+    cursor:pointer;
+}
+
+#message{
+    margin-top:30px;
+    font-size:22px;
+    display:none;
+}
+
+.heart{
+    position:absolute;
+    color:red;
+    font-size:24px;
+    animation: float 4s linear infinite;
+}
+
+@keyframes float{
+    from{transform:translateY(100vh);}
+    to{transform:translateY(-10vh);}
+}
+</style>
+</head>
+
+<body>
+
+<h1>Hi ❤️</h1>
+<p>I made this just for you</p>
+
+<button onclick="showMessage()">Click Me</button>
+
+<div id="message">
+    You mean the world to me 💕
+</div>
+
+<script>
+function showMessage(){
+    document.getElementById("message").style.display="block";
+    spawnHearts();
+}
+
+function spawnHearts(){
+    for(let i=0;i<20;i++){
+        let heart=document.createElement("div");
+        heart.innerHTML="❤️";
+        heart.className="heart";
+        heart.style.left=Math.random()*100+"vw";
+        heart.style.animationDuration=(2+Math.random()*3)+"s";
+        document.body.appendChild(heart);
+    }
+}
+</script>
+
+</body>
+</html>
 
