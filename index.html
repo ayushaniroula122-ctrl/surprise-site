@@ -6,37 +6,36 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Pristina&display=swap');
 
-body {
+body{
     margin:0;
-    background: linear-gradient(135deg,#ffb6c1,#ffe4e1);
-    text-align:center;
-    font-family: Arial;
+    background:linear-gradient(135deg,#ffb6c1,#ffe4e1);
 }
 
-/* Header Section */
-.hero {
+/* ---------- HERO ---------- */
+.hero{
     height:100vh;
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
+    text-align:center;
 }
 
-h1 {
+h1{
     font-family:'Castellar',serif;
     font-weight:bold;
     font-size:3em;
     color:black;
 }
 
-.hero p {
+.hero p{
     font-family:'Pristina',cursive;
     font-size:1.5em;
     color:black;
     max-width:700px;
 }
 
-button {
+button{
     margin-top:30px;
     padding:15px 30px;
     font-size:18px;
@@ -47,107 +46,44 @@ button {
     cursor:pointer;
 }
 
-/* Falling hearts */
+/* ---------- HEARTS ---------- */
 .heart{
-    position:absolute;
-    color:red;
-    animation:fall 4s linear forwards;
-}
-@keyframes fall{
-    0%{transform:translateY(-50px);opacity:0;}
-    10%{opacity:1;}
-    100%{transform:translateY(100vh);opacity:0;}
+    position:fixed;
+    top:-40px;
+    pointer-events:none;
+    animation:fall linear forwards;
 }
 
-/* Story Section */
-.story {
+@keyframes fall{
+    from{transform:translateY(0);}
+    to{transform:translateY(110vh);}
+}
+
+/* ---------- IMAGE STORIES ---------- */
+.story,.story2{
     display:flex;
     align-items:flex-start;
     margin:60px;
 }
 
-.story img{
+.story img,.story2 img{
     width:260px;
-    border-radius:12px;
-    margin-right:20px;
+    border-radius:14px;
 }
 
-.story p{
+.story img{ margin-right:20px; }
+.story2{ justify-content:flex-end; }
+.story2 img{ margin-left:20px; }
+
+/* ---------- TEXT STYLE ---------- */
+.story p,
+.story2 p{
     font-family:"Arial Nova Condensed Light", Arial, sans-serif;
     font-style:italic;
-    font-size:14px;
-    max-width:520px;
-}
+    font-weight:bold;
+    font-size:16px;
+    line-height:1.6;
+    color:black;
 
-.story2 {
-    display:flex;
-    justify-content:flex-end;
-    align-items:flex-start;
-    margin:60px;
-}
-
-.story2 img{
-    width:260px;
-    border-radius:12px;
-    margin-left:20px;
-}
-</style>
-</head>
-
-
-<body>
-
-<!-- FIRST SCREEN -->
-<div class="hero">
-    <h1>Finally, I made a website for you. Yayyyyy!!</h1>
-
-    <p>
-    It might not be the best website, but trust me I made a lot of effort ❤️<br>
-    Wanna see what your Bhuntu made for you?
-    </p>
-
-    <button onclick="scrollDown()">Click to see what's waiting for you</button>
-</div>
-
-
-<!-- STORY SECTION -->
-<div class="story">
-<img src="first.jpg">
-
-<p>
-Do you remember when we first met? We just clicked so easily, like the universe gave us a little push. Everything felt natural, and being with you didn’t take any effort, it just happened. Honestly, I never thought we would come this far… and now here we are, with all those crazy memories, love, care, and all the little things we have shared. 18 months! One and a half years… damn, that’s not a short time! We’ve come so far, and I’m just so happy and grateful that I met you.
-</p>
-</div>
-
-
-<div class="story2">
-<p>
-Look at us now… being so happy together and just enjoying each other’s company. I never thought I’d be able to open up to someone this much. You never make me feel bad for the things I do, even when I know they’re a bit silly sometimes. You’ve shown me what love really feels like, and trust me, you bring out the best version of me. I wouldn’t be the same without you. You make me a better person, and I can’t imagine my life without you. I want to fill your days with love, wrap you in affection, and cherish every moment with you, always making you feel as special as you make me feel.
-</p>
-
-<img src="second.jpg">
-</div>
-
-
-<script>
-function spawnHearts(n){
-    for(let i=0;i<n;i++){
-        let h=document.createElement("div");
-        h.innerHTML="❤️";
-        h.className="heart";
-        h.style.left=Math.random()*90+"vw";
-        h.style.fontSize=(20+Math.random()*20)+"px";
-        document.body.appendChild(h);
-        setTimeout(()=>h.remove(),4000);
-    }
-}
-
-window.onload=()=>spawnHearts(8);
-
-function scrollDown(){
-    window.scrollTo({top:window.innerHeight,behavior:'smooth'});
-}
-</script>
-
-</body>
-</html>
+    background:
+      radial-gradient(cir
