@@ -2,9 +2,9 @@
 <html>
 <head>
     <title></title>
-    <!-- Import a romantic handwriting font from Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pristina&display=swap');
+
         body {
             margin: 0;
             height: 100vh;
@@ -13,24 +13,28 @@
             justify-content: center;
             align-items: center;
             background: linear-gradient(135deg, #ffb6c1, #ffe4e1);
-            font-family: 'Dancing Script', cursive;
             text-align: center;
-            color: black; /* text color black */
+            overflow: hidden; /* so hearts don't scroll */
         }
 
         h1 {
+            font-family: 'Castellar', serif;
+            font-weight: bold;
             font-size: 3em;
             margin: 10px 0;
+            color: black;
         }
 
         p {
+            font-family: 'Pristina', cursive;
             font-size: 1.5em;
             margin: 10px 0;
             max-width: 700px;
+            color: black;
         }
 
         #buttonContainer {
-            margin-top: 50px;
+            margin-top: 40px;
         }
 
         button {
@@ -49,14 +53,27 @@
             transform: scale(1.1);
             background: #ff2d6f;
         }
+
+        .heart {
+            position: absolute;
+            color: red;
+            font-size: 24px;
+            animation: fall 4s linear forwards;
+            pointer-events: none;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-50px); opacity: 0; }
+            10% { opacity: 1; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
     </style>
 </head>
 
 <body>
 
     <h1>Finally, I made a website for you. Yayyyyy!!</h1>
-    <p>It might not be the best website, but trust me I made a lot of effort ❤️</p>
-    <p>Wanna see what your Bhuntu made for you?</p>
+    <p>It might not be the best website, but trust me I made a lot of effort ❤️<br>Wanna see what your Bhuntu made for you?</p>
 
     <div id="buttonContainer">
         <button onclick="goToSurprise()">Click to see what's waiting for you</button>
@@ -66,6 +83,27 @@
         function goToSurprise() {
             window.location.href = "surprise.html";
         }
+
+        // Function to create falling hearts
+        function spawnHearts(num) {
+            for (let i = 0; i < num; i++) {
+                const heart = document.createElement('div');
+                heart.innerHTML = '❤️';
+                heart.className = 'heart';
+                heart.style.left = Math.random() * 90 + 'vw'; // random horizontal position
+                heart.style.animationDuration = (2 + Math.random() * 2) + 's';
+                heart.style.fontSize = (20 + Math.random() * 20) + 'px';
+                document.body.appendChild(heart);
+
+                // Remove heart after animation
+                setTimeout(() => heart.remove(), 4000);
+            }
+        }
+
+        // Minimal aesthetic heart blast on page load
+        window.onload = () => {
+            spawnHearts(8); // only 8 hearts for subtle effect
+        };
     </script>
 
 </body>
