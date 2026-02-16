@@ -1,89 +1,157 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Hearts + Sparkle</title>
+<title>For You ❤️</title>
 
 <style>
-body {
-  margin: 0;
-  height: 100vh;
-  overflow: hidden;
-  background: black;
-  font-family: Arial, sans-serif;
-  color: white;
+body{
+    margin:0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg,#ffb6c1,#ffe4e1);
+    overflow-x:hidden;
 }
 
-/* ✨ Sparkles around background */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background-image:
-    radial-gradient(white 2px, transparent 2px),
-    radial-gradient(pink 2px, transparent 2px),
-    radial-gradient(lightblue 2px, transparent 2px);
-  background-size: 60px 60px, 80px 80px, 100px 100px;
-  animation: sparkleMove 15s linear infinite;
+/* ---------- TOP PAGE ---------- */
+
+.hero{
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
 }
 
-@keyframes sparkleMove {
-  from { background-position: 0 0, 0 0, 0 0; }
-  to { background-position: 200px 400px, -200px 300px, 300px -200px; }
+.hero h1{
+    font-family:'Castellar',serif;
+    color:black;
 }
 
-/* ❤️ Falling hearts */
-.heart {
-  position: absolute;
-  top: -10px;
-  font-size: 24px;
-  animation: fall linear forwards;
+.hero p{
+    font-size:20px;
+    color:black;
 }
 
-@keyframes fall {
-  to {
-    transform: translateY(110vh);
-    opacity: 0;
-  }
+button{
+    padding:15px 30px;
+    border:none;
+    border-radius:40px;
+    background:#ff4b79;
+    color:white;
+    font-size:18px;
+    cursor:pointer;
 }
 
-/* 💬 Center text box */
-.text-box {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 30px 50px;
-  background: rgba(255,255,255,0.1);
-  border-radius: 12px;
-  backdrop-filter: blur(6px);
-  font-size: 28px;
+button:hover{
+    transform:scale(1.1);
 }
+
+/* ---------- HEARTS ---------- */
+
+.heart{
+    position:fixed;
+    top:-40px;
+    color:red;
+    animation:fall linear forwards;
+    pointer-events:none;
+}
+
+@keyframes fall{
+    from{ transform:translateY(-50px); opacity:1;}
+    to{ transform:translateY(110vh); opacity:0;}
+}
+
+/* ---------- STORY LAYOUT ---------- */
+
+.story, .story2{
+    display:flex;
+    align-items:flex-start;
+    margin:40px;
+}
+
+.story2{
+    justify-content:flex-end;
+}
+
+.story img,
+.story2 img{
+    width:250px;
+    border-radius:12px;
+}
+
+/* ---------- TEXT STYLE (MATCHING BOTH) ---------- */
+
+.textbox{
+    font-family:"Arial Nova Condensed Light", Arial, sans-serif;
+    font-style:italic;
+    font-weight:bold;
+    font-size:16px;
+    color:black;
+
+    background:white;
+    padding:10px 14px;
+    border-radius:20px;
+
+    display:inline;
+    line-height:1.6;
+}
+
+.story p{ margin-left:20px; }
+.story2 p{ margin-right:20px; }
+
 </style>
 </head>
 
 <body>
 
-<div class="text-box">
-  Your Text Here 💖
+<div class="hero">
+<h1>Finally, I made a website for you. Yayyyyy!!</h1>
+<p>
+It might not be the best website, but trust me I made a lot of effort ❤️<br>
+Wanna see what your Bhuntu made for you?
+</p>
+
+<button onclick="scrollDown()">Click to continue</button>
+</div>
+
+<!-- STORY -->
+
+<div class="story">
+<img src="first.jpg">
+
+<p class="textbox">
+Do you remember when we first met? We just clicked so easily, like the universe gave us a little push...
+</p>
+</div>
+
+<div class="story2">
+
+<p class="textbox">
+Look at us now… being so happy together and just enjoying each other’s company...
+</p>
+
+<img src="second.jpg">
 </div>
 
 <script>
-function createHeart() {
-  const heart = document.createElement("div");
-  heart.className = "heart";
-  heart.innerHTML = "❤️";
-
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.animationDuration = (3 + Math.random()*4) + "s";
-
-  document.body.appendChild(heart);
-
-  setTimeout(() => heart.remove(), 7000);
+function spawnHearts(n){
+    for(let i=0;i<n;i++){
+        let h=document.createElement("div");
+        h.innerHTML="❤️";
+        h.className="heart";
+        h.style.left=Math.random()*100+"vw";
+        h.style.fontSize=(18+Math.random()*22)+"px";
+        h.style.animationDuration=(3+Math.random()*2)+"s";
+        document.body.appendChild(h);
+        setTimeout(()=>h.remove(),5000);
+    }
 }
 
-setInterval(createHeart, 300);
+window.onload=()=>spawnHearts(12);
+
+function scrollDown(){
+    window.scrollTo({top:window.innerHeight,behavior:'smooth'});
+}
 </script>
 
 </body>
