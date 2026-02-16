@@ -1,158 +1,89 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title></title>
+<meta charset="UTF-8">
+<title>Hearts + Sparkle</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Pristina&display=swap');
-
-body{
-    margin:0;
-    background:linear-gradient(135deg,#ffb6c1,#ffe4e1);
+body {
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+  background: black;
+  font-family: Arial, sans-serif;
+  color: white;
 }
 
-/* ---------- HERO ---------- */
-.hero{
-    height:100vh;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
+/* ✨ Sparkles around background */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(white 2px, transparent 2px),
+    radial-gradient(pink 2px, transparent 2px),
+    radial-gradient(lightblue 2px, transparent 2px);
+  background-size: 60px 60px, 80px 80px, 100px 100px;
+  animation: sparkleMove 15s linear infinite;
 }
 
-h1{
-    font-family:'Castellar',serif;
-    font-weight:bold;
-    font-size:3em;
-    color:black;
+@keyframes sparkleMove {
+  from { background-position: 0 0, 0 0, 0 0; }
+  to { background-position: 200px 400px, -200px 300px, 300px -200px; }
 }
 
-.hero p{
-    font-family:'Pristina',cursive;
-    font-size:1.5em;
-    color:black;
-    max-width:700px;
+/* ❤️ Falling hearts */
+.heart {
+  position: absolute;
+  top: -10px;
+  font-size: 24px;
+  animation: fall linear forwards;
 }
 
-button{
-    margin-top:30px;
-    padding:15px 30px;
-    font-size:18px;
-    border:none;
-    border-radius:50px;
-    background:#ff4b79;
-    color:white;
-    cursor:pointer;
+@keyframes fall {
+  to {
+    transform: translateY(110vh);
+    opacity: 0;
+  }
 }
 
-/* ---------- HEARTS ---------- */
-.heart{
-    position:fixed;
-    top:-40px;
-    pointer-events:none;
-    animation:fall linear forwards;
-}
-
-@keyframes fall{
-    from{transform:translateY(0);}
-    to{transform:translateY(110vh);}
-}
-
-/* ---------- IMAGE STORIES ---------- */
-.story,.story2{
-    display:flex;
-    align-items:flex-start;
-    margin:60px;
-}
-
-.story img,.story2 img{
-    width:260px;
-    border-radius:14px;
-}
-
-.story img{ margin-right:20px; }
-.story2{ justify-content:flex-end; }
-.story2 img{ margin-left:20px; }
-
-/* ---------- TEXT STYLE ---------- */
-.story p,
-.story2 p{
-    font-family:"Arial Nova Condensed Light", Arial, sans-serif;
-    font-style:italic;
-    font-weight:bold;
-    font-size:16px;
-    line-height:1.6;
-    color:black;
-
-    background:
-      radial-gradient(circle at 25% 40%, rgba(255,215,0,.25) 1px, transparent 2px),
-      radial-gradient(circle at 70% 60%, rgba(192,192,192,.25) 1px, transparent 2px),
-      white;
-
-    display:inline;
-    padding:6px 14px;
-    border-radius:25px;
-
-    box-decoration-break:clone;
-    -webkit-box-decoration-break:clone;
+/* 💬 Center text box */
+.text-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 30px 50px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 12px;
+  backdrop-filter: blur(6px);
+  font-size: 28px;
 }
 </style>
 </head>
 
-
 <body>
 
-<div class="hero">
-<h1>Finally, I made a website for you. Yayyyyy!!</h1>
-
-<p>
-It might not be the best website, but trust me I made a lot of effort ❤️<br>
-Wanna see what your Bhuntu made for you?
-</p>
-
-<button onclick="scrollDown()">Click to see what's waiting for you</button>
+<div class="text-box">
+  Your Text Here 💖
 </div>
-
-
-<div class="story">
-<img src="first.jpg">
-
-<p>
-Do you remember when we first met? We just clicked so easily, like the universe gave us a little push. Everything felt natural, and being with you didn’t take any effort, it just happened. Honestly, I never thought we would come this far… and now here we are, with all those crazy memories, love, care, and all the little things we have shared. 18 months! One and a half years… damn, that’s not a short time! We’ve come so far, and I’m just so happy and grateful that I met you.
-</p>
-</div>
-
-
-<div class="story2">
-
-<p>
-Look at us now… being so happy together and just enjoying each other’s company. I never thought I’d be able to open up to someone this much. You never make me feel bad for the things I do, even when I know they’re a bit silly sometimes. You’ve shown me what love really feels like, and trust me, you bring out the best version of me. I wouldn’t be the same without you. You make me a better person, and I can’t imagine my life without you. I want to fill your days with love, wrap you in affection, and cherish every moment with you, always making you feel as special as you make me feel.
-</p>
-
-<img src="second.jpg">
-</div>
-
 
 <script>
-function spawnHearts(count){
-    for(let i=0;i<count;i++){
-        const h=document.createElement("div");
-        h.className="heart";
-        h.innerHTML="❤️";
-        h.style.left=Math.random()*100+"vw";
-        h.style.fontSize=(18+Math.random()*14)+"px";
-        h.style.animationDuration=(3+Math.random()*2)+"s";
-        document.body.appendChild(h);
-        setTimeout(()=>h.remove(),5000);
-    }
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "❤️";
+
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = (3 + Math.random()*4) + "s";
+
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 7000);
 }
 
-window.onload=()=>spawnHearts(12);
-
-function scrollDown(){
-    window.scrollTo({top:window.innerHeight,behavior:'smooth'});
-}
+setInterval(createHeart, 300);
 </script>
 
 </body>
