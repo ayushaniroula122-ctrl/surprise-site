@@ -1,110 +1,153 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Pristina&display=swap');
+<title></title>
 
-        body {
-            margin: 0;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(135deg, #ffb6c1, #ffe4e1);
-            text-align: center;
-            overflow: hidden; /* so hearts don't scroll */
-        }
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Pristina&display=swap');
 
-        h1 {
-            font-family: 'Castellar', serif;
-            font-weight: bold;
-            font-size: 3em;
-            margin: 10px 0;
-            color: black;
-        }
+body {
+    margin:0;
+    background: linear-gradient(135deg,#ffb6c1,#ffe4e1);
+    text-align:center;
+    font-family: Arial;
+}
 
-        p {
-            font-family: 'Pristina', cursive;
-            font-size: 1.5em;
-            margin: 10px 0;
-            max-width: 700px;
-            color: black;
-        }
+/* Header Section */
+.hero {
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
 
-        #buttonContainer {
-            margin-top: 40px;
-        }
+h1 {
+    font-family:'Castellar',serif;
+    font-weight:bold;
+    font-size:3em;
+    color:black;
+}
 
-        button {
-            padding: 15px 30px;
-            font-size: 18px;
-            border: none;
-            border-radius: 50px;
-            background: #ff4b79;
-            color: white;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            transition: transform 0.2s, background 0.2s;
-        }
+.hero p {
+    font-family:'Pristina',cursive;
+    font-size:1.5em;
+    color:black;
+    max-width:700px;
+}
 
-        button:hover {
-            transform: scale(1.1);
-            background: #ff2d6f;
-        }
+button {
+    margin-top:30px;
+    padding:15px 30px;
+    font-size:18px;
+    border:none;
+    border-radius:50px;
+    background:#ff4b79;
+    color:white;
+    cursor:pointer;
+}
 
-        .heart {
-            position: absolute;
-            color: red;
-            font-size: 24px;
-            animation: fall 4s linear forwards;
-            pointer-events: none;
-        }
+/* Falling hearts */
+.heart{
+    position:absolute;
+    color:red;
+    animation:fall 4s linear forwards;
+}
+@keyframes fall{
+    0%{transform:translateY(-50px);opacity:0;}
+    10%{opacity:1;}
+    100%{transform:translateY(100vh);opacity:0;}
+}
 
-        @keyframes fall {
-            0% { transform: translateY(-50px); opacity: 0; }
-            10% { opacity: 1; }
-            100% { transform: translateY(100vh); opacity: 0; }
-        }
-    </style>
+/* Story Section */
+.story {
+    display:flex;
+    align-items:flex-start;
+    margin:60px;
+}
+
+.story img{
+    width:260px;
+    border-radius:12px;
+    margin-right:20px;
+}
+
+.story p{
+    font-family:"Arial Nova Condensed Light", Arial, sans-serif;
+    font-style:italic;
+    font-size:14px;
+    max-width:520px;
+}
+
+.story2 {
+    display:flex;
+    justify-content:flex-end;
+    align-items:flex-start;
+    margin:60px;
+}
+
+.story2 img{
+    width:260px;
+    border-radius:12px;
+    margin-left:20px;
+}
+</style>
 </head>
+
 
 <body>
 
+<!-- FIRST SCREEN -->
+<div class="hero">
     <h1>Finally, I made a website for you. Yayyyyy!!</h1>
-    <p>It might not be the best website, but trust me I made a lot of effort ❤️<br>Wanna see what your Bhuntu made for you?</p>
 
-    <div id="buttonContainer">
-        <button onclick="goToSurprise()">Click to see what's waiting for you</button>
-    </div>
+    <p>
+    It might not be the best website, but trust me I made a lot of effort ❤️<br>
+    Wanna see what your Bhuntu made for you?
+    </p>
 
-    <script>
-        function goToSurprise() {
-            window.location.href = "surprise.html";
-        }
+    <button onclick="scrollDown()">Click to see what's waiting for you</button>
+</div>
 
-        // Function to create falling hearts
-        function spawnHearts(num) {
-            for (let i = 0; i < num; i++) {
-                const heart = document.createElement('div');
-                heart.innerHTML = '❤️';
-                heart.className = 'heart';
-                heart.style.left = Math.random() * 90 + 'vw'; // random horizontal position
-                heart.style.animationDuration = (2 + Math.random() * 2) + 's';
-                heart.style.fontSize = (20 + Math.random() * 20) + 'px';
-                document.body.appendChild(heart);
 
-                // Remove heart after animation
-                setTimeout(() => heart.remove(), 4000);
-            }
-        }
+<!-- STORY SECTION -->
+<div class="story">
+<img src="first.jpg">
 
-        // Minimal aesthetic heart blast on page load
-        window.onload = () => {
-            spawnHearts(8); // only 8 hearts for subtle effect
-        };
-    </script>
+<p>
+Do you remember when we first met? We just clicked so easily, like the universe gave us a little push. Everything felt natural, and being with you didn’t take any effort, it just happened. Honestly, I never thought we would come this far… and now here we are, with all those crazy memories, love, care, and all the little things we have shared. 18 months! One and a half years… damn, that’s not a short time! We’ve come so far, and I’m just so happy and grateful that I met you.
+</p>
+</div>
+
+
+<div class="story2">
+<p>
+Look at us now… being so happy together and just enjoying each other’s company. I never thought I’d be able to open up to someone this much. You never make me feel bad for the things I do, even when I know they’re a bit silly sometimes. You’ve shown me what love really feels like, and trust me, you bring out the best version of me. I wouldn’t be the same without you. You make me a better person, and I can’t imagine my life without you. I want to fill your days with love, wrap you in affection, and cherish every moment with you, always making you feel as special as you make me feel.
+</p>
+
+<img src="second.jpg">
+</div>
+
+
+<script>
+function spawnHearts(n){
+    for(let i=0;i<n;i++){
+        let h=document.createElement("div");
+        h.innerHTML="❤️";
+        h.className="heart";
+        h.style.left=Math.random()*90+"vw";
+        h.style.fontSize=(20+Math.random()*20)+"px";
+        document.body.appendChild(h);
+        setTimeout(()=>h.remove(),4000);
+    }
+}
+
+window.onload=()=>spawnHearts(8);
+
+function scrollDown(){
+    window.scrollTo({top:window.innerHeight,behavior:'smooth'});
+}
+</script>
 
 </body>
 </html>
