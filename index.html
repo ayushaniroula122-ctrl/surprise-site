@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Website with Quiz</title>
+<title>Bhuntu Surprise ❤️</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Pristina&display=swap');
 
@@ -118,25 +118,26 @@ button{
     to{background-position:40px 40px, 50px 50px;}
 }
 
-/* ---------- QUIZ & REWARD ---------- */
-.section{
+/* ---------- QUIZ SECTIONS ---------- */
+.quiz-section {
     display:none;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content:center;
+    align-items:center;
     text-align:center;
-    min-height:100vh;
-    padding:20px;
-}
-
-.quiz-question {
+    padding:40px;
     font-family:"Times New Roman", Times, serif;
     font-weight:bold;
-    font-size:1.5em;
-    margin-bottom:20px;
+    min-height:100vh;
+    background:linear-gradient(135deg,#ffb6c1,#ffe4e1);
 }
 
-.options button {
+.quiz-section .question {
+    font-size:1.5em;
+    margin-bottom:30px;
+}
+
+.quiz-section .options button {
     display:block;
     margin:10px auto;
     padding:12px 25px;
@@ -149,71 +150,176 @@ button{
     transition: transform 0.2s, background 0.2s;
 }
 
-.options button:hover {
+.quiz-section .options button:hover {
     transform: scale(1.05);
     background:#ff2d6f;
 }
 
-#nextBtn {
+#reward{
     display:none;
-    margin-top:30px;
+    padding:20px;
+}
+
+#reward p{
+    font-size:1.3em;
+    line-height:1.6;
+    margin-bottom:30px;
+}
+
+#reward button{
     padding:12px 30px;
     font-size:16px;
     border:none;
     border-radius:25px;
-    background:#4CAF50;
+    background:#ff4b79;
     color:white;
     cursor:pointer;
     transition: transform 0.2s, background 0.2s;
 }
 
-#nextBtn:hover {
-    transform: scale(1.05);
-    background:#3e8e41;
-}
-
-.reward h1 {
-    font-size:3em;
-    font-weight:bold;
-    margin-bottom:20px;
-}
-
-.reward p {
-    font-size:1.3em;
-    font-style:italic;
-    line-height:1.6;
-    margin-bottom:30px;
+#reward button:hover{
+    transform:scale(1.05);
+    background:#ff2d6f;
 }
 </style>
 </head>
+
 <body>
 
-<!-- HERO -->
-<div id="hero" class="hero">
+<!-- HERO SECTION -->
+<div class="hero" id="hero">
 <h1>Finally, I made a website for you. Yayyyyy!!</h1>
-<p>It might not be the best website, but trust me I made a lot of effort ❤️<br>Wanna see what your Bhuntu made for you?</p>
-<button onclick="scrollDown(); showSection('story1')">Click to see what's waiting for you</button>
+<p>
+It might not be the best website, but trust me I made a lot of effort ❤️<br>
+Wanna see what your Bhuntu made for you?
+</p>
+<button onclick="scrollToStories()">Click to see what's waiting for you</button>
 </div>
 
-<!-- STORY 1 -->
-<div id="story1" class="story section">
+<!-- STORIES -->
+<div class="story" id="story1">
 <img src="first.jpg">
-<p>Do you remember when we first met? We just clicked so easily, like the universe gave us a little push. Everything felt natural, and being with you didn’t take any effort, it just happened. Honestly, I never thought we would come this far… and now here we are, with all those crazy memories, love, care, and all the little things we have shared. 18 months! One and a half years… damn, that’s not a short time! We’ve come so far, and I’m just so happy and grateful that I met you.</p>
-<button onclick="showSection('story2')">Continue</button>
+<p>
+Do you remember when we first met? We just clicked so easily, like the universe gave us a little push. Everything felt natural, and being with you didn’t take any effort, it just happened. Honestly, I never thought we would come this far… and now here we are, with all those crazy memories, love, care, and all the little things we have shared. 18 months! One and a half years… damn, that’s not a short time! We’ve come so far, and I’m just so happy and grateful that I met you.
+</p>
 </div>
 
-<!-- STORY 2 -->
-<div id="story2" class="story2 section">
-<p>Look at us now… being so happy together and just enjoying each other’s company. I never thought I’d be able to open up to someone this much. You never make me feel bad for the things I do, even when I know they’re a bit silly sometimes. You’ve shown me what love really feels like, and trust me, you bring out the best version of me. I wouldn’t be the same without you. You make me a better person, and I can’t imagine my life without you. I want to fill your days with love, wrap you in affection, and cherish every moment with you, always making you feel as special as you make me feel.</p>
+<div class="story2" id="story2">
+<p>
+Look at us now… being so happy together and just enjoying each other’s company. I never thought I’d be able to open up to someone this much. You never make me feel bad for the things I do, even when I know they’re a bit silly sometimes. You’ve shown me what love really feels like, and trust me, you bring out the best version of me. I wouldn’t be the same without you. You make me a better person, and I can’t imagine my life without you. I want to fill your days with love, wrap you in affection, and cherish every moment with you, always making you feel as special as you make me feel.
+</p>
 <img src="second.jpg">
-<button onclick="showSection('quiz')">Continue for Quiz</button>
 </div>
 
-<!-- QUIZ -->
-<div id="quiz" class="section">
-<h1>Quiz Time! ❤️</h1>
-<div id="quizContent">
-<div class="quiz-question" id="questionText">1. What is one thing that you love the most?</div>
-<div class="options">
-    <button onclick="checkAnswer(this,false)">a. Money</button>
-    <button on
+<div style="text-align:center; margin:40px;">
+    <button onclick="showQuiz1()">Continue for Quiz</button>
+</div>
+
+<!-- QUIZ 1 -->
+<div class="quiz-section" id="quiz1">
+    <h1>Quiz 1 ❤️</h1>
+    <div class="question">1. What is one thing that you love the most?</div>
+    <div class="options">
+        <button onclick="checkAnswer(this,false,'quiz1')">a. Money</button>
+        <button onclick="checkAnswer(this,true,'quiz1')">b. Bhuntu</button>
+        <button onclick="checkAnswer(this,false,'quiz1')">c. Computers</button>
+        <button onclick="checkAnswer(this,false,'quiz1')">d. Sleeping</button>
+    </div>
+</div>
+
+<!-- QUIZ 2 -->
+<div class="quiz-section" id="quiz2">
+    <h1>Quiz 2 ❤️</h1>
+    <div class="question">2. One thing you cannot live without?</div>
+    <div class="options">
+        <button onclick="checkAnswer(this,false,'quiz2')">a. Air</button>
+        <button onclick="checkAnswer(this,false,'quiz2')">b. Water</button>
+        <button onclick="checkAnswer(this,true,'quiz2')">c. Aayusha</button>
+        <button onclick="checkAnswer(this,false,'quiz2')">d. Oxygen</button>
+    </div>
+</div>
+
+<!-- QUIZ 3 -->
+<div class="quiz-section" id="quiz3">
+    <h1>Quiz 3 ❤️</h1>
+    <div class="question">3. Who do you want to spend the rest of your life with?</div>
+    <div class="options">
+        <button onclick="goNextQuiz('quiz3')">a. Aayusha</button>
+        <button onclick="goNextQuiz('quiz3')">b. Aayusha</button>
+        <button onclick="goNextQuiz('quiz3')">c. Aayusha</button>
+        <button onclick="goNextQuiz('quiz3')">d. Aayusha</button>
+    </div>
+</div>
+
+<!-- REWARD -->
+<div id="reward">
+    <h1>Yayyy!! 😄</h1>
+    <p>
+        You got all the answers right 🎉<br>
+        As a reward… you get me as a gift for the rest of your life 😉.<br><br>
+        And honestly, this little quiz was just to remind you how important I am to you. I know you already know it… but I just had to make sure you really feel it 😘.
+    </p>
+    <button onclick="window.location.href='#'">Next</button>
+</div>
+
+<script>
+// Hearts
+function spawnHearts(count){
+    for(let i=0;i<count;i++){
+        const h=document.createElement("div");
+        h.className="heart";
+        h.innerHTML="❤️";
+        h.style.left=Math.random()*100+"vw";
+        h.style.fontSize=(18+Math.random()*14)+"px";
+        h.style.animationDuration=(3+Math.random()*2)+"s";
+        document.body.appendChild(h);
+        setTimeout(()=>h.remove(),5000);
+    }
+}
+window.onload=()=>spawnHearts(12);
+
+// Scroll to stories
+function scrollToStories(){
+    window.scrollTo({top:window.innerHeight, behavior:'smooth'});
+}
+
+// Show quiz1
+function showQuiz1(){
+    document.getElementById('hero').style.display='none';
+    document.getElementById('story1').style.display='none';
+    document.getElementById('story2').style.display='none';
+    document.querySelector('div[style]').style.display='none'; // hide Continue button
+    document.getElementById('quiz1').style.display='flex';
+}
+
+// Check answer
+function checkAnswer(button,isCorrect,quizId){
+    if(isCorrect){
+        alert("Correct! 🎉");
+        const allButtons = document.querySelectorAll('#'+quizId+' .options button');
+        allButtons.forEach(btn => btn.disabled = true);
+        button.style.background="#4CAF50";
+        // Show next quiz
+        if(quizId==='quiz1') setTimeout(()=>{showQuiz('quiz2');},500);
+        if(quizId==='quiz2') setTimeout(()=>{showQuiz('quiz3');},500);
+    } else {
+        alert("Oops! Try again 💕");
+        button.style.background="#aaa";
+        button.disabled=true;
+    }
+}
+
+function showQuiz(quizId){
+    document.getElementById('quiz1').style.display='none';
+    document.getElementById('quiz2').style.display='none';
+    document.getElementById('quiz3').style.display='none';
+    document.getElementById(quizId).style.display='flex';
+}
+
+function goNextQuiz(quizId){
+    showQuiz('reward');
+}
+</script>
+
+</body>
+</html>
