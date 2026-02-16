@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Bhuntu Website ❤️</title>
-
+<title>My Special Website ❤️</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Pristina&display=swap');
 
 body{
     margin:0;
+    font-family: "Arial Nova Condensed Light", Arial, sans-serif;
     background:linear-gradient(135deg,#ffb6c1,#ffe4e1);
-    font-family:"Arial Nova Condensed Light", Arial, sans-serif;
 }
 
 /* ---------- HERO ---------- */
-.hero{
-    height:100vh;
+.section{
+    min-height:100vh;
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
     text-align:center;
+    padding:20px;
 }
 
 h1{
@@ -37,14 +37,19 @@ h1{
 }
 
 button{
-    margin-top:30px;
-    padding:15px 30px;
+    margin-top:20px;
+    padding:12px 30px;
     font-size:18px;
     border:none;
     border-radius:50px;
     background:#ff4b79;
     color:white;
     cursor:pointer;
+    transition: transform 0.2s;
+}
+
+button:hover{
+    transform:scale(1.05);
 }
 
 /* ---------- HEARTS ---------- */
@@ -64,7 +69,7 @@ button{
 .story,.story2{
     display:flex;
     align-items:flex-start;
-    margin:60px;
+    margin:40px;
 }
 
 .story img,.story2 img{
@@ -76,6 +81,4 @@ button{
 .story2{ justify-content:flex-end; }
 .story2 img{ margin-left:20px; }
 
-/* ---------- TEXT STYLE ---------- */
-.story p,
-.story2 p{
+/* -------*
