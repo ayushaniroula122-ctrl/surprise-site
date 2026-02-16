@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title></title>
+<title>Bhuntu's Surprise Website ❤️</title>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Pristina&display=swap');
@@ -9,6 +9,9 @@
 body{
     margin:0;
     background:linear-gradient(135deg,#ffb6c1,#ffe4e1);
+    font-family:"Arial Nova Condensed Light", Arial, sans-serif;
+    color:black;
+    text-align:center;
 }
 
 /* ---------- HERO ---------- */
@@ -18,7 +21,6 @@ body{
     flex-direction:column;
     justify-content:center;
     align-items:center;
-    text-align:center;
 }
 
 h1{
@@ -97,7 +99,6 @@ button{
     -webkit-box-decoration-break:clone;
 }
 
-
 /* ---------- SPARKLES AROUND TEXT ---------- */
 .story p::before,
 .story2 p::before{
@@ -120,14 +121,77 @@ button{
     to{background-position:40px 40px, 50px 50px;}
 }
 
+/* ---------- QUIZ ---------- */
+.quizPage {
+    display:none;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.quizPage .question {
+    font-style:italic;
+    font-size:1.5em;
+    margin-bottom:30px;
+}
+
+.quizPage .options button {
+    display:block;
+    margin:10px auto;
+    padding:12px 25px;
+    font-size:16px;
+    border:none;
+    border-radius:25px;
+    background:#ff4b79;
+    color:white;
+    cursor:pointer;
+    transition: transform 0.2s, background 0.2s;
+}
+
+.quizPage .options button:hover {
+    transform: scale(1.05);
+    background:#ff2d6f;
+}
+
+#nextBtn {
+    display:none;
+    margin-top:30px;
+    padding:12px 30px;
+    font-size:16px;
+    border:none;
+    border-radius:25px;
+    background:#4CAF50;
+    color:white;
+    cursor:pointer;
+    transition: transform 0.2s, background 0.2s;
+}
+
+#nextBtn:hover {
+    transform: scale(1.05);
+    background:#3e8e41;
+}
+
+/* ---------- REWARD PAGE ---------- */
+#reward {
+    display:none;
+    padding:20px;
+}
+
+#reward p {
+    font-size:1.3em;
+    font-style:italic;
+    line-height:1.6;
+    margin-bottom:30px;
+}
 
 </style>
 </head>
 
-
 <body>
 
-<div class="hero">
+<!-- ---------- HERO PAGE ---------- -->
+<div id="hero" class="hero">
 <h1>Finally, I made a website for you. Yayyyyy!!</h1>
 
 <p>
@@ -135,28 +199,76 @@ It might not be the best website, but trust me I made a lot of effort ❤️<br>
 Wanna see what your Bhuntu made for you?
 </p>
 
-<button onclick="scrollDown()">Click to see what's waiting for you</button>
+<button onclick="showPage('story')">Click to see what's waiting for you</button>
 </div>
 
+<!-- ---------- STORY PAGES ---------- -->
+<div id="story" class="storyPage" style="display:none;">
+    <div class="story">
+        <img src="first.jpg">
+        <p>
+        Do you remember when we first met? We just clicked so easily, like the universe gave us a little push. Everything felt natural, and being with you didn’t take any effort, it just happened. Honestly, I never thought we would come this far… and now here we are, with all those crazy memories, love, care, and all the little things we have shared. 18 months! One and a half years… damn, that’s not a short time! We’ve come so far, and I’m just so happy and grateful that I met you.
+        </p>
+    </div>
 
-<div class="story">
-<img src="first.jpg">
+    <div class="story2">
+        <p>
+        Look at us now… being so happy together and just enjoying each other’s company. I never thought I’d be able to open up to someone this much. You never make me feel bad for the things I do, even when I know they’re a bit silly sometimes. You’ve shown me what love really feels like, and trust me, you bring out the best version of me. I wouldn’t be the same without you. You make me a better person, and I can’t imagine my life without you. I want to fill your days with love, wrap you in affection, and cherish every moment with you, always making you feel as special as you make me feel.
+        </p>
+        <img src="second.jpg">
+    </div>
 
-<p>
-Do you remember when we first met? We just clicked so easily, like the universe gave us a little push. Everything felt natural, and being with you didn’t take any effort, it just happened. Honestly, I never thought we would come this far… and now here we are, with all those crazy memories, love, care, and all the little things we have shared. 18 months! One and a half years… damn, that’s not a short time! We’ve come so far, and I’m just so happy and grateful that I met you.
-</p>
+    <div style="text-align:center; margin:40px;">
+        <button onclick="showPage('quiz1')">Continue for Quiz</button>
+    </div>
 </div>
 
-
-<div class="story2">
-
-<p>
-Look at us now… being so happy together and just enjoying each other’s company. I never thought I’d be able to open up to someone this much. You never make me feel bad for the things I do, even when I know they’re a bit silly sometimes. You’ve shown me what love really feels like, and trust me, you bring out the best version of me. I wouldn’t be the same without you. You make me a better person, and I can’t imagine my life without you. I want to fill your days with love, wrap you in affection, and cherish every moment with you, always making you feel as special as you make me feel.
-</p>
-
-<img src="second.jpg">
+<!-- ---------- QUIZ 1 ---------- -->
+<div id="quiz1" class="quizPage">
+    <div class="question">1. What is one thing that you love the most?</div>
+    <div class="options">
+        <button onclick="checkAnswer(this,false,1)">a. Money</button>
+        <button onclick="checkAnswer(this,true,1)">b. Bhuntu</button>
+        <button onclick="checkAnswer(this,false,1)">c. Computers</button>
+        <button onclick="checkAnswer(this,false,1)">d. Sleeping</button>
+    </div>
+    <button id="nextBtn1" onclick="showPage('quiz2')">Next Question</button>
 </div>
 
+<!-- ---------- QUIZ 2 ---------- -->
+<div id="quiz2" class="quizPage">
+    <div class="question">2. One thing you cannot live without?</div>
+    <div class="options">
+        <button onclick="checkAnswer(this,false,2)">a. Air</button>
+        <button onclick="checkAnswer(this,false,2)">b. Water</button>
+        <button onclick="checkAnswer(this,true,2)">c. Aayusha</button>
+        <button onclick="checkAnswer(this,false,2)">d. Oxygen</button>
+    </div>
+    <button id="nextBtn2" onclick="showPage('quiz3')">Next Question</button>
+</div>
+
+<!-- ---------- QUIZ 3 ---------- -->
+<div id="quiz3" class="quizPage">
+    <div class="question">3. Who do you want to spend the rest of your life with?</div>
+    <div class="options">
+        <button onclick="correctAnswer(this,'quiz3')">a. Aayusha</button>
+        <button onclick="correctAnswer(this,'quiz3')">b. Aayusha</button>
+        <button onclick="correctAnswer(this,'quiz3')">c. Aayusha</button>
+        <button onclick="correctAnswer(this,'quiz3')">d. Aayusha</button>
+    </div>
+    <button id="nextBtn3" onclick="showPage('reward')">Next</button>
+</div>
+
+<!-- ---------- REWARD PAGE ---------- -->
+<div id="reward">
+    <h1>Yayyy!! 😄</h1>
+    <p>
+        You got all the answers right 🎉<br>
+        As a reward… you get me as a gift for the rest of your life 😉.<br><br>
+        And honestly, this little quiz was just to remind you how important I am to you. I know you already know it… but I just had to make sure you really feel it 😘.
+    </p>
+    <button onclick="alert('Thank you! ❤️')">Next</button>
+</div>
 
 <script>
 function spawnHearts(count){
@@ -172,10 +284,46 @@ function spawnHearts(count){
     }
 }
 
-window.onload=()=>spawnHearts(12);
+window.onload=()=>{
+    spawnHearts(12);
+    showPage('hero');
+};
 
 function scrollDown(){
     window.scrollTo({top:window.innerHeight,behavior:'smooth'});
+}
+
+function showPage(id){
+    // hide all pages
+    const pages = ['hero','story','quiz1','quiz2','quiz3','reward'];
+    pages.forEach(p=>{
+        document.getElementById(p).style.display='none';
+    });
+    // show requested page
+    document.getElementById(id).style.display='flex';
+}
+
+function checkAnswer(button,isCorrect,quiz){
+    if(isCorrect){
+        alert("Correct! 🎉");
+        button.style.background="#4CAF50";
+        button.disabled = true;
+        document.getElementById('nextBtn'+quiz).style.display='block';
+        const allButtons = document.querySelectorAll('#quiz'+quiz+' .options button');
+        allButtons.forEach(btn => btn.disabled = true);
+    } else{
+        alert("Oops! Try again 💕");
+        button.style.background="#aaa";
+        button.disabled = true;
+    }
+}
+
+function correctAnswer(button,pageId){
+    alert("Correct! 🎉");
+    const allButtons = document.querySelectorAll('#'+pageId+' .options button');
+    allButtons.forEach(btn=>btn.disabled=true);
+    button.style.background="#4CAF50";
+    document.getElementById('nextBtn3').style.display='block';
 }
 </script>
 
