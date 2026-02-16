@@ -1,25 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>My Special Website ❤️</title>
+<title>Website with Quiz</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Pristina&display=swap');
 
 body{
     margin:0;
-    font-family: "Arial Nova Condensed Light", Arial, sans-serif;
     background:linear-gradient(135deg,#ffb6c1,#ffe4e1);
+    font-family:"Arial Nova Condensed Light", Arial, sans-serif;
 }
 
 /* ---------- HERO ---------- */
-.section{
-    min-height:100vh;
+.hero{
+    height:100vh;
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
     text-align:center;
-    padding:20px;
 }
 
 h1{
@@ -37,19 +36,14 @@ h1{
 }
 
 button{
-    margin-top:20px;
-    padding:12px 30px;
+    margin-top:30px;
+    padding:15px 30px;
     font-size:18px;
     border:none;
     border-radius:50px;
     background:#ff4b79;
     color:white;
     cursor:pointer;
-    transition: transform 0.2s;
-}
-
-button:hover{
-    transform:scale(1.05);
 }
 
 /* ---------- HEARTS ---------- */
@@ -69,7 +63,7 @@ button:hover{
 .story,.story2{
     display:flex;
     align-items:flex-start;
-    margin:40px;
+    margin:60px;
 }
 
 .story img,.story2 img{
@@ -81,4 +75,145 @@ button:hover{
 .story2{ justify-content:flex-end; }
 .story2 img{ margin-left:20px; }
 
-/* -------*
+/* ---------- TEXT STYLE ---------- */
+.story p,
+.story2 p{
+    font-style:italic;
+    font-weight:bold;
+    font-size:16px;
+    line-height:1.6;
+    color:black;
+
+    background:white;
+    padding:8px 16px;
+    border-radius:25px;
+
+    position:relative;
+    z-index:1;
+
+    display:inline;
+    box-decoration-break:clone;
+    -webkit-box-decoration-break:clone;
+}
+
+/* ---------- SPARKLES AROUND TEXT ---------- */
+.story p::before,
+.story2 p::before{
+    content:"";
+    position:absolute;
+    inset:-4px;
+    border-radius:30px;
+    z-index:-1;
+
+    background:
+      radial-gradient(circle, rgba(255,215,0,.6) 1px, transparent 2px),
+      radial-gradient(circle, rgba(192,192,192,.6) 1px, transparent 2px);
+
+    background-size:18px 18px;
+    animation:sparkleMove 6s linear infinite;
+}
+
+@keyframes sparkleMove{
+    from{background-position:0 0, 10px 10px;}
+    to{background-position:40px 40px, 50px 50px;}
+}
+
+/* ---------- QUIZ & REWARD ---------- */
+.section{
+    display:none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align:center;
+    min-height:100vh;
+    padding:20px;
+}
+
+.quiz-question {
+    font-family:"Times New Roman", Times, serif;
+    font-weight:bold;
+    font-size:1.5em;
+    margin-bottom:20px;
+}
+
+.options button {
+    display:block;
+    margin:10px auto;
+    padding:12px 25px;
+    font-size:16px;
+    border:none;
+    border-radius:25px;
+    background:#ff4b79;
+    color:white;
+    cursor:pointer;
+    transition: transform 0.2s, background 0.2s;
+}
+
+.options button:hover {
+    transform: scale(1.05);
+    background:#ff2d6f;
+}
+
+#nextBtn {
+    display:none;
+    margin-top:30px;
+    padding:12px 30px;
+    font-size:16px;
+    border:none;
+    border-radius:25px;
+    background:#4CAF50;
+    color:white;
+    cursor:pointer;
+    transition: transform 0.2s, background 0.2s;
+}
+
+#nextBtn:hover {
+    transform: scale(1.05);
+    background:#3e8e41;
+}
+
+.reward h1 {
+    font-size:3em;
+    font-weight:bold;
+    margin-bottom:20px;
+}
+
+.reward p {
+    font-size:1.3em;
+    font-style:italic;
+    line-height:1.6;
+    margin-bottom:30px;
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div id="hero" class="hero">
+<h1>Finally, I made a website for you. Yayyyyy!!</h1>
+<p>It might not be the best website, but trust me I made a lot of effort ❤️<br>Wanna see what your Bhuntu made for you?</p>
+<button onclick="scrollDown(); showSection('story1')">Click to see what's waiting for you</button>
+</div>
+
+<!-- STORY 1 -->
+<div id="story1" class="story section">
+<img src="first.jpg">
+<p>Do you remember when we first met? We just clicked so easily, like the universe gave us a little push. Everything felt natural, and being with you didn’t take any effort, it just happened. Honestly, I never thought we would come this far… and now here we are, with all those crazy memories, love, care, and all the little things we have shared. 18 months! One and a half years… damn, that’s not a short time! We’ve come so far, and I’m just so happy and grateful that I met you.</p>
+<button onclick="showSection('story2')">Continue</button>
+</div>
+
+<!-- STORY 2 -->
+<div id="story2" class="story2 section">
+<p>Look at us now… being so happy together and just enjoying each other’s company. I never thought I’d be able to open up to someone this much. You never make me feel bad for the things I do, even when I know they’re a bit silly sometimes. You’ve shown me what love really feels like, and trust me, you bring out the best version of me. I wouldn’t be the same without you. You make me a better person, and I can’t imagine my life without you. I want to fill your days with love, wrap you in affection, and cherish every moment with you, always making you feel as special as you make me feel.</p>
+<img src="second.jpg">
+<button onclick="showSection('quiz')">Continue for Quiz</button>
+</div>
+
+<!-- QUIZ -->
+<div id="quiz" class="section">
+<h1>Quiz Time! ❤️</h1>
+<div id="quizContent">
+<div class="quiz-question" id="questionText">1. What is one thing that you love the most?</div>
+<div class="options">
+    <button onclick="checkAnswer(this,false)">a. Money</button>
+    <button on
