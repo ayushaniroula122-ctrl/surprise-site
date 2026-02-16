@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>For You ❤️</title>
+<title></title>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Pristina&display=swap');
+
 body{
     margin:0;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg,#ffb6c1,#ffe4e1);
-    overflow-x:hidden;
+    background:linear-gradient(135deg,#ffb6c1,#ffe4e1);
 }
 
-/* ---------- TOP PAGE ---------- */
-
+/* ---------- HERO ---------- */
 .hero{
     height:100vh;
     display:flex;
@@ -22,125 +21,151 @@ body{
     text-align:center;
 }
 
-.hero h1{
+h1{
     font-family:'Castellar',serif;
+    font-weight:bold;
+    font-size:3em;
     color:black;
 }
 
 .hero p{
-    font-size:20px;
+    font-family:'Pristina',cursive;
+    font-size:1.5em;
     color:black;
+    max-width:700px;
 }
 
 button{
+    margin-top:30px;
     padding:15px 30px;
+    font-size:18px;
     border:none;
-    border-radius:40px;
+    border-radius:50px;
     background:#ff4b79;
     color:white;
-    font-size:18px;
     cursor:pointer;
 }
 
-button:hover{
-    transform:scale(1.1);
-}
-
 /* ---------- HEARTS ---------- */
-
 .heart{
     position:fixed;
-    top:-40px;
-    color:red;
-    animation:fall linear forwards;
+    top:-50px;
     pointer-events:none;
+    animation:fall linear forwards;
 }
 
 @keyframes fall{
-    from{ transform:translateY(-50px); opacity:1;}
-    to{ transform:translateY(110vh); opacity:0;}
+    from{transform:translateY(0);}
+    to{transform:translateY(110vh);}
 }
 
-/* ---------- STORY LAYOUT ---------- */
-
-.story, .story2{
+/* ---------- IMAGE STORIES ---------- */
+.story,.story2{
     display:flex;
     align-items:flex-start;
-    margin:40px;
+    margin:60px;
 }
 
-.story2{
-    justify-content:flex-end;
+.story img,.story2 img{
+    width:260px;
+    border-radius:14px;
 }
 
-.story img,
-.story2 img{
-    width:250px;
-    border-radius:12px;
-}
+.story img{ margin-right:20px; }
+.story2{ justify-content:flex-end; }
+.story2 img{ margin-left:20px; }
 
-/* ---------- TEXT STYLE (MATCHING BOTH) ---------- */
-
-.textbox{
+/* ---------- TEXT STYLE ---------- */
+.story p,
+.story2 p{
     font-family:"Arial Nova Condensed Light", Arial, sans-serif;
     font-style:italic;
     font-weight:bold;
     font-size:16px;
+    line-height:1.6;
     color:black;
 
     background:white;
-    padding:10px 14px;
-    border-radius:20px;
+    padding:8px 16px;
+    border-radius:25px;
+
+    position:relative;
+    z-index:1;
 
     display:inline;
-    line-height:1.6;
+    box-decoration-break:clone;
+    -webkit-box-decoration-break:clone;
 }
 
-.story p{ margin-left:20px; }
-.story2 p{ margin-right:20px; }
+
+/* ---------- SPARKLES AROUND TEXT ---------- */
+.story p::before,
+.story2 p::before{
+    content:"";
+    position:absolute;
+    inset:-4px;
+    border-radius:30px;
+    z-index:-1;
+
+    background:
+      radial-gradient(circle, rgba(255,215,0,.6) 1px, transparent 2px),
+      radial-gradient(circle, rgba(192,192,192,.6) 1px, transparent 2px);
+
+    background-size:18px 18px;
+    animation:sparkleMove 6s linear infinite;
+}
+
+@keyframes sparkleMove{
+    from{background-position:0 0, 10px 10px;}
+    to{background-position:40px 40px, 50px 50px;}
+}
+
 
 </style>
 </head>
+
 
 <body>
 
 <div class="hero">
 <h1>Finally, I made a website for you. Yayyyyy!!</h1>
+
 <p>
 It might not be the best website, but trust me I made a lot of effort ❤️<br>
 Wanna see what your Bhuntu made for you?
 </p>
 
-<button onclick="scrollDown()">Click to continue</button>
+<button onclick="scrollDown()">Click to see what's waiting for you</button>
 </div>
 
-<!-- STORY -->
 
 <div class="story">
 <img src="first.jpg">
 
-<p class="textbox">
-Do you remember when we first met? We just clicked so easily, like the universe gave us a little push...
+<p>
+Do you remember when we first met? We just clicked so easily, like the universe gave us a little push. Everything felt natural, and being with you didn’t take any effort, it just happened. Honestly, I never thought we would come this far… and now here we are, with all those crazy memories, love, care, and all the little things we have shared. 18 months! One and a half years… damn, that’s not a short time! We’ve come so far, and I’m just so happy and grateful that I met you.
 </p>
 </div>
 
+
 <div class="story2">
 
-<p class="textbox">
-Look at us now… being so happy together and just enjoying each other’s company...
+<p>
+Look at us now… being so happy together and just enjoying each other’s company. I never thought I’d be able to open up to someone this much. You never make me feel bad for the things I do, even when I know they’re a bit silly sometimes. You’ve shown me what love really feels like, and trust me, you bring out the best version of me. I wouldn’t be the same without you. You make me a better person, and I can’t imagine my life without you. I want to fill your days with love, wrap you in affection, and cherish every moment with you, always making you feel as special as you make me feel.
 </p>
 
 <img src="second.jpg">
 </div>
 
+
 <script>
-function spawnHearts(n){
-    for(let i=0;i<n;i++){
-        let h=document.createElement("div");
-        h.innerHTML="❤️";
+function spawnHearts(count){
+    for(let i=0;i<count;i++){
+        const h=document.createElement("div");
         h.className="heart";
+        h.innerHTML="❤️";
         h.style.left=Math.random()*100+"vw";
-        h.style.fontSize=(18+Math.random()*22)+"px";
+        h.style.fontSize=(18+Math.random()*14)+"px";
         h.style.animationDuration=(3+Math.random()*2)+"s";
         document.body.appendChild(h);
         setTimeout(()=>h.remove(),5000);
