@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title> <!-- Browser tab will be blank -->
+    <title></title>
+    <!-- Import a romantic handwriting font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
@@ -10,41 +12,50 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ffb6c1, #ffe4e1);
+            font-family: 'Dancing Script', cursive;
             text-align: center;
-            color: #fff;
+            color: black; /* text color black */
         }
 
-        h1, p {
+        h1 {
+            font-size: 3em;
             margin: 10px 0;
         }
 
+        p {
+            font-size: 1.5em;
+            margin: 10px 0;
+            max-width: 700px;
+        }
+
         #buttonContainer {
-            margin-top: 40px;
+            margin-top: 50px;
         }
 
         button {
-            padding: 15px 25px;
+            padding: 15px 30px;
             font-size: 18px;
             border: none;
-            border-radius: 10px;
-            background: #ff4b5c;
+            border-radius: 50px;
+            background: #ff4b79;
             color: white;
             cursor: pointer;
-            transition: transform 0.2s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: transform 0.2s, background 0.2s;
         }
 
         button:hover {
             transform: scale(1.1);
+            background: #ff2d6f;
         }
     </style>
 </head>
 
 <body>
 
-    <h1>Finally, I made a website for you</h1>
-    <p>It might not be the best website, but trust me I made a lot of effort</p>
+    <h1>Finally, I made a website for you. Yayyyyy!!</h1>
+    <p>It might not be the best website, but trust me I made a lot of effort ❤️</p>
     <p>Wanna see what your Bhuntu made for you?</p>
 
     <div id="buttonContainer">
@@ -53,7 +64,6 @@
 
     <script>
         function goToSurprise() {
-            // Opens the second page
             window.location.href = "surprise.html";
         }
     </script>
