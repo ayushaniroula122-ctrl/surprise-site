@@ -209,6 +209,17 @@ button{
     }
 }
 
+/* Hide stories initially so user must click button */
+#story1, #story2 {
+    display: none;
+}
+
+/* Hide Continue button initially */
+#continueBlock {
+    display: none; /* hide initially */
+}
+
+
 </style>
 </head>
 
@@ -331,8 +342,17 @@ window.onload=()=>spawnHearts(12);
 
 // Scroll to stories
 function scrollToStories(){
+    // Show stories
+    document.getElementById("story1").style.display = "flex";
+    document.getElementById("story2").style.display = "flex";
+
+    // Show Continue button
+    document.getElementById("continueBlock").style.display = "block";
+
+    // Scroll smoothly to the first story
     document.getElementById("story1").scrollIntoView({behavior:"smooth"});
 }
+
 
 
 // Show quiz1
