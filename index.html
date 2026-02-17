@@ -288,12 +288,13 @@ Look at us now… being so happy together and just enjoying each other’s compa
     <h1>Quiz 3 ❤️</h1>
     <div class="question">3. Who do you want to spend the rest of your life with?</div>
     <div class="options">
-        <button onclick="goNextQuiz('quiz3')">a. Aayusha</button>
-        <button onclick="goNextQuiz('quiz3')">b. Aayusha</button>
-        <button onclick="goNextQuiz('quiz3')">c. Aayusha</button>
-        <button onclick="goNextQuiz('quiz3')">d. Aayusha</button>
+        <button onclick="checkAnswer(this,true,'quiz3')">a. Aayusha</button>
+        <button onclick="checkAnswer(this,true,'quiz3')">b. Aayusha</button>
+        <button onclick="checkAnswer(this,true,'quiz3')">c. Aayusha</button>
+        <button onclick="checkAnswer(this,true,'quiz3')">d. Aayusha</button>
     </div>
 </div>
+
 
 <!-- REWARD -->
 <div id="reward">
@@ -391,10 +392,12 @@ function checkAnswer(button,isCorrect,quizId){
         const buttons=section.querySelectorAll(".options button");
         buttons.forEach(b=>b.disabled=true);
 
-        setTimeout(()=>{
-            if(quizId==="quiz1") showQuiz("quiz2");
-            else if(quizId==="quiz2") showQuiz("quiz3");
-        },700);
+       setTimeout(()=>{
+    if(quizId==="quiz1") showQuiz("quiz2");
+    else if(quizId==="quiz2") showQuiz("quiz3");
+    else if(quizId==="quiz3") showQuiz("reward");
+},700);
+
 
     } else {
         showMessage(section,"Incorrect — try again 💕");
