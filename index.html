@@ -211,7 +211,8 @@ Look at us now… being so happy together and just enjoying each other’s compa
 <img src="second.jpg">
 </div>
 
-<div style="text-align:center; margin:40px;">
+<div id="continueBlock" style="text-align:center; margin:40px;">
+
     <button onclick="showQuiz1()">Continue for Quiz</button>
 </div>
 
@@ -263,6 +264,7 @@ Look at us now… being so happy together and just enjoying each other’s compa
 </div>
 
 <script>
+
 // Hearts
 function spawnHearts(count){
     for(let i=0;i<count;i++){
@@ -278,47 +280,81 @@ function spawnHearts(count){
 }
 window.onload=()=>spawnHearts(12);
 
+
 // Scroll to stories
 function scrollToStories(){
-    window.scrollTo({top:window.innerHeight, behavior:'smooth'});
+    document.getElementById("story1").scrollIntoView({behavior:"smooth"});
 }
+
 
 // Show quiz1
 function showQuiz1(){
     document.getElementById('hero').style.display='none';
     document.getElementById('story1').style.display='none';
     document.getElementById('story2').style.display='none';
-    document.querySelector('div[style]').style.display='none'; // hide Continue button
+    document.getElementById('continueBlock').style.display='none';
+
     document.getElementById('quiz1').style.display='flex';
 }
 
-// Check answer
+
+// Message at bottom instead of alert
+function showMessage(section,text){
+    let msg = section.querySelector(".result-msg");
+    if(!msg){
+        msg = document.createElement("div");
+        msg.className="result-msg";
+        msg.style.marginTop="20px";
+        msg.style.fontSize="18px";
+        section.appendChild(msg);
+    }
+    msg.innerText=text;
+}
+
+
+// Check answers
 function checkAnswer(button,isCorrect,quizId){
+
+    const section=document.getElementById(quizId);
+
     if(isCorrect){
-        alert("Correct! 🎉");
-        const allButtons = document.querySelectorAll('#'+quizId+' .options button');
-        allButtons.forEach(btn => btn.disabled = true);
-        button.style.background="#4CAF50";
-        // Show next quiz
-        if(quizId==='quiz1') setTimeout(()=>{showQuiz('quiz2');},500);
-        if(quizId==='quiz2') setTimeout(()=>{showQuiz('quiz3');},500);
+        showMessage(section,"Correct ❤️");
+
+        const buttons=section.querySelectorAll(".options button");
+        buttons.forEach(b=>b.disabled=true);
+
+        setTimeout(()=>{
+            if(quizId==="quiz1") showQuiz("quiz2");
+            else if(quizId==="quiz2") showQuiz("quiz3");
+        },700);
+
     } else {
-        alert("Oops! Try again 💕");
-        button.style.background="#aaa";
-        button.disabled=true;
+        showMessage(section,"Incorrect — try again 💕");
     }
 }
 
-function showQuiz(quizId){
-    document.getElementById('quiz1').style.display='none';
-    document.getElementById('quiz2').style.display='none';
-    document.getElementById('quiz3').style.display='none';
-    document.getElementById(quizId).style.display='flex';
+
+// Switch quizzes
+function showQuiz(id){
+    ["quiz1","quiz2","quiz3"].forEach(q=>{
+        document.getElementById(q).style.display="none";
+    });
+
+    if(id==="reward"){
+        document.getElementById("reward").style.display="block";
+        window.scrollTo({top:0,behavior:"smooth"});
+        return;
+    }
+
+    document.getElementById(id).style.display="flex";
 }
 
-function goNextQuiz(quizId){
-    showQuiz('reward');
+
+// Final quiz
+function goNextQuiz(){
+    showQuiz("reward");
 }
+
 </script>
 
 </body>
